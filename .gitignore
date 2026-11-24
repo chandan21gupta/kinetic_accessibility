@@ -1,0 +1,7 @@
+.conda-env/
+envs/
+logs/
+runs/
+data/eterna100-benchmarking/
+__pycache__/
+*.pyc

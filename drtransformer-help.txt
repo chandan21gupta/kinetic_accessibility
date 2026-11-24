@@ -1,0 +1,121 @@
+usage: DrTransformer [-h] [--version] [-v] [--name <str>]
+                     [--stdout {log,drf,OFF}] [--logfile] [--outdir <str>]
+                     [--tmpdir <str>] [--no-timecourse] [--plot-minh <flt>]
+                     [--t-lin <int>] [--t-log <int>] [--t-ext <flt>]
+                     [--t-end <flt>]
+                     [--pause-sites <int>=<flt> [<int>=<flt> ...]]
+                     [--start <int>] [--stop <int>] [--o-prune <flt>]
+                     [--cg-auto <flt>] [--t-fast <flt>] [--fpwm <int>]
+                     [--mfree <int>] [--delth <int>] [--k0 <flt>] [-T <flt>]
+                     [-4] [-d <int>] [--noGU] [--noClosingGU] [--noLP]
+                     [-P <str>]
+
+DrTransformer: RNA folding kinetics during transcription.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  -v, --verbose         Track process by writing verbose output to STDOUT
+                        during calculations. Use --logfile if you want to see
+                        *just* verbose information via STDOUT. (default: 0)
+
+DrTransformer output:
+  --name <str>          Name your output files, name the header of your plots,
+                        etc. this option overwrites the fasta-header.
+                        (default: )
+  --stdout {log,drf,OFF}
+                        Choose STDOUT formats to follow the cotranscriptional
+                        folding progress in real time: *log*: a human readable
+                        output format. *drf*: DrForna visualization input
+                        format. *OFF*: actively suppress output. The default
+                        (None) switches between *OFF*, if --logfile is
+                        specified, or *log* otherwise. (default: None)
+  --logfile             Write verbose information to a file:
+                        {--outdir}/{--name}.log (default: False)
+  --outdir <str>        Place regular output files, into this directory.
+                        Creates the directory if it does not exist. (default:
+                        )
+  --tmpdir <str>        Specify path for storing landscape files for
+                        debugging. These files will not be removed when the
+                        program terminates. (default: )
+  --no-timecourse       Do not produce the time-course file (outdir/name.drf).
+                        (default: False)
+  --plot-minh <flt>     Coarsify the output based on a minimum barrier height.
+                        In contrast to t-fast, this does *not* affect the
+                        accuracy of the model. (default: None)
+  --t-lin <int>         Evenly space output *--t-lin* times during
+                        transcription on a linear time scale. (default: 10)
+  --t-log <int>         Evenly space output *--t-log* times after
+                        transcription on a logarithmic time scale. (default:
+                        30)
+
+Transcription parameters:
+  --t-ext <flt>         Inverse of transcription rate, i.e. time per
+                        nucleotide extension [seconds per nucleotide].
+                        (default: 0.04)
+  --t-end <flt>         Post-transcriptional simulation time [seconds].
+                        (default: 3600)
+  --pause-sites <int>=<flt> [<int>=<flt> ...]
+                        Transcriptional pausing sites. E.g. "--pause-sites
+                        82=2e3 84=33" alters the simulation time at
+                        nucleotides 82 and 84 to 2000 and 33 seconds,
+                        respectively. (default: None)
+  --start <int>         Start transcription at this nucleotide. (default: 1)
+  --stop <int>          Stop transcription at this nucleotide (default: None)
+
+DrTransformer algorithm:
+  --o-prune <flt>       Occupancy threshold to prune structures from the
+                        network. The structures with lowest occupancy are
+                        removed until at most o-prune occupancy has been
+                        removed from the total population. (default: 0.05)
+  --cg-auto <flt>       Sets the coarse-graining parameter (--t-fast) as a
+                        multiple of the present transcription rate. (A
+                        convenience parameter to adjust --t-fast automatically
+                        when varying --t-ext. (default: 10)
+  --t-fast <flt>        Folding times faster than --t-fast are considered
+                        instantaneous. Structural transitions that are faster
+                        than --t-fast are considered part of the same
+                        macrostate. Directly translates to an energy barrier
+                        separating conformations using: dG =
+                        -RT*ln((1/t-fast)/k0). Overwrites the --cg-auto
+                        parameter. (default: None)
+  --fpwm <int>          Findpath search width multiplier. This value times the
+                        base-pair distance results in the findpath search
+                        width. Higher values increase the chances to find
+                        energetically lower saddle energies for the
+                        transition. (default: 4)
+  --mfree <int>         Minimum number of freed bases during helix fraying.
+                        Fraying helices can vary greatly in length, starting
+                        with at least two base-pairs. This parameter defines
+                        the minimum amount of bases freed by helix fraying.
+                        For example, 6 can correspond to a stack of two base-
+                        pairs and a loop region of 2 nucleotides. If less
+                        bases are freed and there exists a nested stacked
+                        helix, this helix is considered to fray as well.
+                        (default: 6)
+  --delth <int>         Delete structures if inactive for more than *delth*
+                        rounds. (default: 10)
+  --k0 <flt>            Arrhenius rate constant (pre-exponential factor).
+                        Adjust this constant of the Arrhenius equation to
+                        relate free energy changes to experimentally
+                        determined folding time [atu/sec]. (default: 100000.0)
+
+ViennaRNA model details:
+  -T <flt>, --temp <flt>
+                        Rescale energy parameters to a temperature of temp C.
+                        (default: 37.0)
+  -4, --noTetra         Do not include special tabulated stabilizing energies
+                        for tri-, tetra- and hexaloop hairpins. (default:
+                        False)
+  -d <int>, --dangles <int>
+                        How to treat dangling end energies for bases adjacent
+                        to helices in free ends and multi-loops. (default: 2)
+  --noGU                Do not allow GU/GT pairs. (default: False)
+  --noClosingGU         Do not allow GU/GT pairs at the end of helices.
+                        (default: False)
+  --noLP                Only consider structures without lonely pairs. (This
+                        is never enforced when estimating energy barriers.)
+                        (default: False)
+  -P <str>, --paramFile <str>
+                        Read energy parameters from paramfile, instead of
+                        using the default parameter set. (default: None)

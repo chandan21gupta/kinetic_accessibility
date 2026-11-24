@@ -1,0 +1,30 @@
+{
+  "dataset_commit": "8a47dde068d196279b04f0a6b0ac5985f0197f0a",
+  "source_sha256": "71147b94c1762a3c8fe93f59e87b53b6292b1c3b9367ce22d5a9c7c6b4736ef6",
+  "selection": "50 uniformly sampled valid exact MFE matches",
+  "seed": 20261125,
+  "n_valid": 99,
+  "n_eligible": 99,
+  "n_selected": 50,
+  "viennarna": "2.8.0",
+  "temperature_C": 37,
+  "dangles": 2,
+  "parameters": "Turner2004",
+  "rates_nt_s": [
+    10,
+    25,
+    50
+  ],
+  "observations_after_full_length_s": [
+    0,
+    0.04,
+    1,
+    60,
+    3600
+  ],
+  "completion_clock": "(length-1)*t_ext: first nucleotide emerges at time zero",
+  "pruning": 0.05,
+  "cg_auto": 10,
+  "k0": 100000,
+  "timeout_per_sequence_s": 21600
+}

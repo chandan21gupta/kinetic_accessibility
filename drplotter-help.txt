@@ -1,0 +1,35 @@
+usage: DrPlotter [-h] [--version] [-v] [-n <str>] [--molecule <str>]
+                 [--exterior-length]
+                 [-f {pdf,svg,png,gr,eps} [{pdf,svg,png,gr,eps} ...]]
+                 [--motiffile <str>] [-m <str> [<str> ...]] [--nxy]
+                 [--plim PLIM] [--accessibilities]
+
+DrPlotter: visualization of the DrForna file format.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  -v, --verbose         Track process using verbose output. (default: 0)
+  -n <str>, --name <str>
+                        Name your output files, name the header of your plots,
+                        etc. this option overwrites the fasta-header.
+                        (default: DrPlotter)
+  --molecule <str>      Include molecule name in the plot. (default: )
+  --exterior-length     Plot the mean length of the exterior loop. (default:
+                        False)
+  -f {pdf,svg,png,gr,eps} [{pdf,svg,png,gr,eps} ...], --formats {pdf,svg,png,gr,eps} [{pdf,svg,png,gr,eps} ...]
+                        Plot the simulation using matplotlib (pdf, svg, png)
+                        and/or write an input file for xmgrace (gr). The
+                        legend uses the identities of structures as specifed
+                        in the logfile. (default: ['pdf'])
+  --motiffile <str>     Specify motifs in a file using dot-bracket notation.
+                        (default: None)
+  -m <str> [<str> ...], --motifs <str> [<str> ...]
+                        Select specific motif names for plotting. The motifs
+                        must be defined in the motiffile. (default: None)
+  --nxy                 Use nxy format instead of *.drf. This option ignores
+                        all other arguments. (default: False)
+  --plim PLIM           Define occupancy limit for legend. (default: 0.05)
+  --accessibilities     Use heatmaps to show accessibility profiles during
+                        transcription (preliminary feature; requires seaborn).
+                        (default: False)

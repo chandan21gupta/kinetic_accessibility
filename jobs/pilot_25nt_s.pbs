@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#PBS -N rna_v2_25nt
+#PBS -P m3rg.spons
+#PBS -q standard_ext
+#PBS -l select=1:ncpus=4:mem=32gb
+#PBS -l walltime=24:00:00
+#PBS -o /home/civil/visitor/gchandan.visitor/kinetic_accessibility/logs/pilot_25nt_s.out
+#PBS -e /home/civil/visitor/gchandan.visitor/kinetic_accessibility/logs/pilot_25nt_s.err
+set -euo pipefail
+cd /home/civil/visitor/gchandan.visitor/kinetic_accessibility
+source /home/civil/visitor/gchandan.visitor/miniconda3/etc/profile.d/conda.sh
+conda activate /home/civil/visitor/gchandan.visitor/kinetic_accessibility/.conda-env
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 MPLBACKEND=Agg
+python scripts/run_rate.py 25 4
