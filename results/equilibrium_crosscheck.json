@@ -1,0 +1,5 @@
+{
+  "n": 50,
+  "max_abs_probability_difference": 7.2697527001563955e-06,
+  "method": "fc.pr_structure versus energy-derived probability"
+}

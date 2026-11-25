@@ -8,7 +8,9 @@ Pilot evaluation of 50 Eterna100-V2 reference designs using ViennaRNA equilibriu
 - Paired transcription conditions: 10, 25, and 50 nt/s.
 - 37 °C, Turner 2004 parameters, dangles=2; ViennaRNA 2.8.0 and DrTransformer 1.0.
 - Full-length observations at 0, 0.04, 1, 60, and 3600 s after the final nucleotide emerges.
-- Simulation outputs are pending validation and analysis. No conclusions about kinetic accessibility have been drawn.
+- Completed: 142/150 simulations; 8 reached the six-hour per-sequence timeout. All completed runs passed population and structure validation.
+- Results and limitations: [analysis report](results/analysis_report.md). Rate comparisons are exploratory because `cg-auto` changes coarse-graining with transcription speed.
+- Occupancy refers to populations assigned to macrostates whose representative exactly matches the target secondary structure; it is not exact microstate probability.
 
 See `kinetics_aware_rna_inverse_design_protocol.md` for the research protocol and `config.json` for the recorded pilot settings.
 
@@ -44,3 +46,20 @@ The runner starts four independent simulations, limits each sequence to six hour
 `scripts/drtransformer_observations.py` wraps the installed simulator to force the requested full-length observation times and save full-precision representative occupancies. It does not change the kinetic landscape or rate parameters. The full-length time origin is `(length-1)/rate` under this simulator's clock. Standard `.drf` files can omit low-occupancy representatives; use `full_length_states.tsv` for quantitative snapshots. Representative occupancies are coarse-grained populations, not exact microstate probabilities.
 
 Environment directories, downloaded upstream code, logs, and raw simulation outputs are excluded from Git. Summary tables may be committed after validation.
+
+## Analysis
+
+```bash
+python scripts/analyze_pilot.py
+python scripts/report_pilot.py
+```
+
+Analysis requires the local raw outputs under `runs/`, which are not stored in this repository. Derived endpoint metrics, trajectories, run audits, bootstrap summaries, and figures are included. Timeouts remain missing results rather than zero occupancy.
+
+![Equilibrium versus target representative occupancy at 60 seconds](figures/peq_vs_pkin_60s.png)
+
+![Mean target representative occupancy for common completed targets](figures/mean_occupancy.png)
+
+![Individual target occupancies](figures/target_heatmap.png)
+
+![Equilibrium–kinetic gap distribution at 60 seconds](figures/gap_distribution_60s.png)
