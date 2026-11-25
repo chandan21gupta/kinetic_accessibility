@@ -51,6 +51,7 @@ Environment directories, downloaded upstream code, logs, and raw simulation outp
 
 ```bash
 python scripts/analyze_pilot.py
+python scripts/plot_matched_parity.py
 python scripts/report_pilot.py
 ```
 
@@ -62,14 +63,4 @@ Analysis requires the local raw outputs under `runs/`, which are not stored in t
 
 The primary parity plot compares stationary target representative population on each run's final retained network with its kinetic population at 60 seconds. See [method and interpretation](results/matched_parity_report.md). Generate with `python scripts/plot_matched_parity.py`; validate the stationary reconstruction on small live networks with `python scripts/validate_matched_equilibrium.py`. This is not full-ensemble equilibrium.
 
-### Original descriptive comparisons
-
-The following scatter and original gap histogram compare exact ViennaRNA microstate probability with DrTransformer representative population. They are not matched parity/deficit measures and must not be interpreted as kinetic enrichment or trapping evidence.
-
-![Original unmatched descriptive scatter](figures/peq_vs_pkin_60s.png)
-
-![Mean target representative occupancy for common completed targets](figures/mean_occupancy.png)
-
-![Individual target occupancies](figures/target_heatmap.png)
-
-![Equilibrium–kinetic gap distribution at 60 seconds](figures/gap_distribution_60s.png)
+Earlier descriptive plots are retained in `figures/archive/` for provenance and are not used to support the conclusions.

@@ -1,6 +1,6 @@
 # Matched final-network equilibrium versus kinetic populations
 
-This replaces the original scatter as a parity comparison. Both axes refer to the same target-labeled representative on the same final retained DrTransformer network, separately for each sequence and transcription condition.
+The primary evidence is the matched parity plot at 60 seconds. Both axes refer to the same target-labeled representative on the same final retained DrTransformer network, separately for each sequence and transcription condition.
 
 - X: stationary target representative population on that fixed final network.
 - Y: kinetic target representative population at 60 seconds after full-length emergence.
@@ -9,6 +9,19 @@ This replaces the original scatter as a parity comparison. Both axes refer to th
 - Above the diagonal: transient enrichment relative to this network's stationary distribution.
 
 The target representative must exactly match the target dot-bracket string. Its population is coarse-grained, not an exact microstate probability.
+
+
+## Research question and principal observation
+
+Does an exact MFE match guarantee finite-time access to the designed secondary structure? All 50 selected reference sequences have the target as their predicted MFE structure under the installed ViennaRNA configuration. Nevertheless, a subset has high modeled equilibrium target representative population and low target representative population 60 seconds after full-length emergence.
+
+This supports a limitation of an MFE-only evaluation objective: thermodynamic design success does not guarantee rapid target formation within this kinetic model. It does not establish that Eterna100-V2 is generally unreliable, that the sequences fail experimentally, or that the observation is novel relative to prior studies.
+
+## Primary figure
+
+![Matched equilibrium–kinetic populations at 60 seconds](../figures/matched_parity_60s.png)
+
+Each point is one reference sequence. Lower-right points identify candidates whose target representative is favored at modeled equilibrium but weakly populated at the finite observation time. Points near the diagonal show agreement with this network's stationary distribution. High equilibrium preference does not generally imply poor accessibility: many high-population points also lie near the diagonal.
 
 ## Reconstruction
 
@@ -21,6 +34,13 @@ Thus its detailed-balance stationary distribution is `pi_i ∝ exp(−E_i/RT)` o
 Six small live validation runs (12 and 116 nt, each at three rates) matched DrTransformer's `get_equilibrium_occupancies` to maximum absolute difference 1.7e-16. Stationarity residuals were also checked against the live rate matrices. See `matched_equilibrium_crosscheck.json`.
 
 Original long-run transition matrices and connectivity were not saved, so we cannot retrospectively compute matrix residuals for those exact networks. The reconstruction uses the installed rate formula; completed standard DrTransformer simulations themselves invoke the detailed-balance routine. For future runs, save the final rate matrices and explicit stationary vectors as well.
+
+
+## Cohort and completed simulations
+
+Fifty sequences were sampled with seed 20261125 from 99 available valid Eterna100-V2/Vienna2 reference solutions, all exact MFE matches under ViennaRNA 2.8.0 (37 °C, Turner 2004, dangles=2). Of 150 attempted rate/sequence simulations, 142 completed and passed full-length structure and population validation, including all five requested times and population sums within 1e-4. No populations were renormalized.
+
+Eight simulations reached the six-hour timeout: puzzles 6 and 80 at 25 nt/s; puzzles 6, 73, 74, 80, 86, and 97 at 50 nt/s. Their populations are missing, not zero. Forty-four targets completed at every rate.
 
 ## Results at 60 seconds
 
@@ -52,3 +72,17 @@ Follow up with saved rate matrices, fixed coarse-graining across transcription r
 - `matched_parity_method.json`: formula, RT, and installed-source checksum.
 
 Reproduce with `python scripts/plot_matched_parity.py` using the local raw outputs. Small-network validation: `python scripts/validate_matched_equilibrium.py`.
+
+## Presentation and reproduction
+
+The main report uses only the matched 60-second parity plot. Original unmatched scatter/gap figures and ancillary descriptive figures are archived under `figures/archive/`; no conclusions about kinetic deficits are drawn from them. Matched 0- and 3600-second figures remain supplementary outputs.
+
+From the project environment, run:
+
+```bash
+python scripts/analyze_pilot.py
+python scripts/plot_matched_parity.py
+python scripts/report_pilot.py
+```
+
+The report generator copies this matched-method report into `analysis_report.md` so future regeneration preserves the corrected interpretation.
