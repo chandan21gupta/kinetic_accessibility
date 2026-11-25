@@ -56,7 +56,17 @@ python scripts/report_pilot.py
 
 Analysis requires the local raw outputs under `runs/`, which are not stored in this repository. Derived endpoint metrics, trajectories, run audits, bootstrap summaries, and figures are included. Timeouts remain missing results rather than zero occupancy.
 
-![Equilibrium versus target representative occupancy at 60 seconds](figures/peq_vs_pkin_60s.png)
+### Matched equilibrium–kinetic comparison
+
+![Matched final-network parity at 60 seconds](figures/matched_parity_60s.png)
+
+The primary parity plot compares stationary target representative population on each run's final retained network with its kinetic population at 60 seconds. See [method and interpretation](results/matched_parity_report.md). Generate with `python scripts/plot_matched_parity.py`; validate the stationary reconstruction on small live networks with `python scripts/validate_matched_equilibrium.py`. This is not full-ensemble equilibrium.
+
+### Original descriptive comparisons
+
+The following scatter and original gap histogram compare exact ViennaRNA microstate probability with DrTransformer representative population. They are not matched parity/deficit measures and must not be interpreted as kinetic enrichment or trapping evidence.
+
+![Original unmatched descriptive scatter](figures/peq_vs_pkin_60s.png)
 
 ![Mean target representative occupancy for common completed targets](figures/mean_occupancy.png)
 

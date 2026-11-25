@@ -1,5 +1,7 @@
 # Eterna100-V2 kinetic accessibility pilot
 
+> **Correction:** The original ViennaRNA-versus-DrTransformer scatter and gap compare different state spaces. They are descriptive only, not matched kinetic-deficit measures. Use [the matched-network report](matched_parity_report.md) and `matched_parity.tsv` for the corrected comparison.
+
 ## Cohort and validation
 
 Fifty reference sequences were sampled with seed 20261125 from 99 valid V2/Vienna2 published solutions. All 99 were exact MFE matches under ViennaRNA 2.8.0 (37 °C, Turner 2004, dangles=2). This is a reference-design pilot, not an algorithm comparison.

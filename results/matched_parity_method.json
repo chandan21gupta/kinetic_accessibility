@@ -1,0 +1,10 @@
+{
+  "drtransformer": "1.0",
+  "temperature_C": 37,
+  "RT_kcal_mol": 0.6163207755,
+  "source_sha256": "771da5f8ec1458c766eb36e32d9a094b03e9f175ccf4a7dec44419162da1b4f0",
+  "formula": "pi_i=exp(-(E_i-min(E))/RT)/sum_j exp(-(E_j-min(E))/RT)",
+  "scope": "Stationary populations on each run's final retained representative network, not full thermodynamic ensemble or explicit basin partition sums",
+  "matrix_saved": false,
+  "connectivity_verified_retrospectively": false
+}

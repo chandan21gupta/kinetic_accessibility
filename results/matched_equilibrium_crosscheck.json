@@ -1,0 +1,44 @@
+[
+  {
+    "length": 12,
+    "n_states": 2,
+    "max_abs_difference_from_drtransformer": 1.6653345369377348e-16,
+    "relative_stationarity_residual": 1.996336094679563e-16,
+    "rate_nt_s": 10
+  },
+  {
+    "length": 12,
+    "n_states": 2,
+    "max_abs_difference_from_drtransformer": 1.6653345369377348e-16,
+    "relative_stationarity_residual": 1.996336094679563e-16,
+    "rate_nt_s": 25
+  },
+  {
+    "length": 12,
+    "n_states": 2,
+    "max_abs_difference_from_drtransformer": 1.6653345369377348e-16,
+    "relative_stationarity_residual": 1.996336094679563e-16,
+    "rate_nt_s": 50
+  },
+  {
+    "length": 116,
+    "n_states": 1,
+    "max_abs_difference_from_drtransformer": 0.0,
+    "relative_stationarity_residual": 0.0,
+    "rate_nt_s": 10
+  },
+  {
+    "length": 116,
+    "n_states": 2,
+    "max_abs_difference_from_drtransformer": 1.3877787807814457e-17,
+    "relative_stationarity_residual": 8.161273552549992e-18,
+    "rate_nt_s": 25
+  },
+  {
+    "length": 116,
+    "n_states": 2,
+    "max_abs_difference_from_drtransformer": 1.3877787807814457e-17,
+    "relative_stationarity_residual": 8.161273552549992e-18,
+    "rate_nt_s": 50
+  }
+]
